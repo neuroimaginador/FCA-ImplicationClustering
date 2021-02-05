@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>planets dataset - Clustering of Implications</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>planets dataset - Clustering of Implications</h1>
+
+<h2>Setup</h2>
+
+<p>First, we load the needed libraries</p>
+
+<pre><code class="r"># Suppress excess info
+options(dplyr.summarise.inform = FALSE)
+options(tidyverse.quiet = TRUE)
+library(&quot;tidyverse&quot;)
+library(&quot;cluster&quot;)
+library(&quot;fcaR&quot;)
+</code></pre>
+
+<p>Load other functions needed to compute implication
+distances and perform clustering.</p>
+
+<pre><code class="r">source(&quot;./distances_registry.R&quot;)
+source(&quot;./implication_distance.R&quot;)
+source(&quot;./cluster.R&quot;)
+source(&quot;./one_hot.R&quot;)
+source(&quot;./count_attributes.R&quot;)
+</code></pre>
+
+<p>Auxiliary functions</p>
+
+<pre><code class="r">imps2str &lt;- function(imp) {
+  sapply(seq(imp$cardinality()), 
+         function(j) 
+           fcaR:::.implication_to_string(
+             imp[j]$get_LHS_matrix(), 
+             imp[j]$get_RHS_matrix(), 
+             imp$get_attributes()))
+}
+</code></pre>
+
+<h2>The planets dataset</h2>
+
+<p>We&#39;ll use the planets dataset, which is included
+in the fcaR package, to show how to cluster 
+implications.</p>
+
+<p>First, load and print the dataset.</p>
+
+<pre><code class="r">library(fcaR)
+fc_planets &lt;- FormalContext$new(planets)
+
+fcaR:::.print_binary(planets) %&gt;% 
+  kableExtra::kable(align = &quot;c&quot;)
+</code></pre>
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> small </th>
+   <th style="text-align:center;"> medium </th>
+   <th style="text-align:center;"> large </th>
+   <th style="text-align:center;"> near </th>
+   <th style="text-align:center;"> far </th>
+   <th style="text-align:center;"> moon </th>
+   <th style="text-align:center;"> no_moon </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> Mercury </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Venus </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Earth </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Mars </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Jupiter </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Saturn </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Uranus </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Neptune </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> Pluto </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;">  </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;"> X </td>
+   <td style="text-align:center;">  </td>
+  </tr>
+</tbody>
+</table>
+
+<p>Let us find the Duquenne-Guigues basis of
+implications and make a copy in variable &ldquo;imps&rdquo;</p>
+
+<pre><code class="r">fc_planets$find_implications()
+imps &lt;- fc_planets$implications$clone()
+imps
+</code></pre>
+
+<pre><code>## Implication set with 10 implications.
+## Rule 1: {no_moon} -&gt; {small, near}
+## Rule 2: {far} -&gt; {moon}
+## Rule 3: {near} -&gt; {small}
+## Rule 4: {large} -&gt; {far, moon}
+## Rule 5: {medium} -&gt; {far, moon}
+## Rule 6: {medium, large, far, moon} -&gt; {small,
+##   near, no_moon}
+## Rule 7: {small, near, moon, no_moon} -&gt;
+##   {medium, large, far}
+## Rule 8: {small, near, far, moon} -&gt; {medium,
+##   large, no_moon}
+## Rule 9: {small, large, far, moon} -&gt; {medium,
+##   near, no_moon}
+## Rule 10: {small, medium, far, moon} -&gt; {large,
+##   near, no_moon}
+</code></pre>
+
+<p>We can compute the dissimilarity between each pair
+of implications, as
+\(\text{diss}(P\to Q, R\to T) := d(P, R) + d(P^+, R^+)\)
+where \(d\) is the Manhattan distance.</p>
+
+<pre><code class="r">Distances &lt;- impl_dist(imps, method = &quot;Manhattan&quot;)
+Dimps &lt;- Distances$left + Distances$closure
+# DD is the dissiilarity matrix
+DD &lt;- as.matrix(Dimps)
+kableExtra::kable(DD, align = &quot;c&quot;, row.names = TRUE)
+</code></pre>
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> 1 </th>
+   <th style="text-align:center;"> 2 </th>
+   <th style="text-align:center;"> 3 </th>
+   <th style="text-align:center;"> 4 </th>
+   <th style="text-align:center;"> 5 </th>
+   <th style="text-align:center;"> 6 </th>
+   <th style="text-align:center;"> 7 </th>
+   <th style="text-align:center;"> 8 </th>
+   <th style="text-align:center;"> 9 </th>
+   <th style="text-align:center;"> 10 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 9 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 6 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 7 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 9 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 10 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 9 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+
+<p>We can use a clustering algorithm to find \(k = 2\)
+clusters</p>
+
+<pre><code class="r">cluster &lt;- cluster_implications(Dimps, k = 2, &quot;pam&quot;)
+
+# The central implications
+imps[cluster$representatives]
+</code></pre>
+
+<pre><code>## Implication set with 2 implications.
+## Rule 1: {far} -&gt; {moon}
+## Rule 2: {small, medium, far, moon} -&gt; {large,
+##   near, no_moon}
+</code></pre>
+
+<p>The implications in the first cluster are</p>
+
+<pre><code class="r">imps[cluster$clustering == 1]
+</code></pre>
+
+<pre><code>## Implication set with 5 implications.
+## Rule 1: {no_moon} -&gt; {small, near}
+## Rule 2: {far} -&gt; {moon}
+## Rule 3: {near} -&gt; {small}
+## Rule 4: {large} -&gt; {far, moon}
+## Rule 5: {medium} -&gt; {far, moon}
+</code></pre>
+
+<p>and in the second one:</p>
+
+<pre><code class="r">imps[cluster$clustering == 2]
+</code></pre>
+
+<pre><code>## Implication set with 5 implications.
+## Rule 1: {medium, large, far, moon} -&gt; {small,
+##   near, no_moon}
+## Rule 2: {small, near, moon, no_moon} -&gt;
+##   {medium, large, far}
+## Rule 3: {small, near, far, moon} -&gt; {medium,
+##   large, no_moon}
+## Rule 4: {small, large, far, moon} -&gt; {medium,
+##   near, no_moon}
+## Rule 5: {small, medium, far, moon} -&gt; {large,
+##   near, no_moon}
+</code></pre>
+
+<p>Note that this cluster is composed by all implications
+in which all attributes appear. Let us remove them
+to cluster the other implications properly:</p>
+
+<pre><code class="r">imps &lt;- imps[imps$support() &gt; 0]
+print(imps)
+</code></pre>
+
+<pre><code>## Implication set with 5 implications.
+## Rule 1: {no_moon} -&gt; {small, near}
+## Rule 2: {far} -&gt; {moon}
+## Rule 3: {near} -&gt; {small}
+## Rule 4: {large} -&gt; {far, moon}
+## Rule 5: {medium} -&gt; {far, moon}
+</code></pre>
+
+<p>Let us compute the dissimilarity matrix</p>
+
+<pre><code class="r">imps
+</code></pre>
+
+<pre><code>## Implication set with 5 implications.
+## Rule 1: {no_moon} -&gt; {small, near}
+## Rule 2: {far} -&gt; {moon}
+## Rule 3: {near} -&gt; {small}
+## Rule 4: {large} -&gt; {far, moon}
+## Rule 5: {medium} -&gt; {far, moon}
+</code></pre>
+
+<pre><code class="r">Distances &lt;- impl_dist(imps, method = &quot;Manhattan&quot;)
+Dimps &lt;- Distances$left + Distances$closure
+DD &lt;- as.matrix(Dimps)
+kableExtra::kable(DD, align = &quot;c&quot;, row.names = TRUE)
+</code></pre>
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> 1 </th>
+   <th style="text-align:center;"> 2 </th>
+   <th style="text-align:center;"> 3 </th>
+   <th style="text-align:center;"> 4 </th>
+   <th style="text-align:center;"> 5 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 3 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 6 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 7 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:center;"> 8 </td>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 7 </td>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+
+<p>And cluster into two groups of implications</p>
+
+<pre><code class="r">cluster &lt;- cluster_implications(Dimps, k = 2, &quot;pam&quot;)
+
+# The central implications are
+imps[cluster$representatives]
+</code></pre>
+
+<pre><code>## Implication set with 2 implications.
+## Rule 1: {near} -&gt; {small}
+## Rule 2: {far} -&gt; {moon}
+</code></pre>
+
+<p>Now, the implications in the first cluster are:</p>
+
+<pre><code class="r">imps[cluster$clustering == 1]
+</code></pre>
+
+<pre><code>## Implication set with 2 implications.
+## Rule 1: {no_moon} -&gt; {small, near}
+## Rule 2: {near} -&gt; {small}
+</code></pre>
+
+<p>and the ones in the second one are:</p>
+
+<pre><code class="r">imps[cluster$clustering == 2]
+</code></pre>
+
+<pre><code>## Implication set with 3 implications.
+## Rule 1: {far} -&gt; {moon}
+## Rule 2: {large} -&gt; {far, moon}
+## Rule 3: {medium} -&gt; {far, moon}
+</code></pre>
+
+<p>This way, we can tag the clusters according to the
+closed sets that arise from the central implications</p>
+
+<pre><code class="r">for (i in seq(k)) {
+
+  cat(&quot; - Cluster&quot;, i, &quot;: &quot;)
+  imp_med &lt;- imps[cluster$representatives[i]]$clone()
+  M &lt;- fcaR:::.union(imp_med$get_LHS_matrix(),
+                     imp_med$get_RHS_matrix())
+  S &lt;- SparseSet$new(attributes = fc_planets$attributes,
+                     M = M)
+  print(S)
+  cat(&quot;\n&quot;)
+
+}
+</code></pre>
+
+<ul>
+<li>Cluster 1 : {small, near}</li>
+<li>Cluster 2 : {far, moon}</li>
+</ul>
+
+<p>This shows that the dataset has two main clusters:</p>
+
+<p>1) Planets near the Sun and therefore small,</p>
+
+<p>2) Planets far from the Sun and therefore with satellites. </p>
+
+<p><strong>Graphical representation of the implication space</strong></p>
+
+<p>We can use multidimensional scaling to plot the 
+implications and their clusters:</p>
+
+<pre><code class="r">imp_mds &lt;- MASS::isoMDS(d = Dimps, k = 2, trace = FALSE) 
+df &lt;- imp_mds$point %&gt;% as.data.frame() %&gt;% 
+  as_tibble() %&gt;%  
+  set_names(c(&quot;x&quot;, &quot;y&quot;)) %&gt;% 
+  mutate(cluster = cluster$clustering,
+         imp = imps2str(imps))
+
+library(ggrepel)
+ggplot(df, aes(x = x, y = y, color = cluster, label = imp)) + 
+  geom_label_repel() +
+  geom_point() +
+  theme_void() + 
+  theme(legend.position = &quot;none&quot;,
+        axis.line = element_line(size = 0))
+</code></pre>
+
+<p><img src="data:image/png;base64,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gQACCCCAgEsBAt6lJmUhgAACCCAQEQECPiIHgmYggAACCCDgUoCAd6lJWQgggAACCEREgICPyIGgGQgggAACCLgUIOBdalIWAggggAACEREg4CNyIGgGAggggAACLgUIeJealIUAAggggEBEBAj4iBwImoEAAggggIBLAQLepSZlIYAAAgggEBEBAj4iB4JmIIAAAggg4FKAgHepSVkIIIAAAghERICAj8iBoBkIIIAAAgi4FCDgXWpSFgIIIIAAAhERIOAjciBoBgIIIIAAAi4FCHiXmpSFAAIIIIBARAQI+IgcCJqBAAIIIICASwEC3qUmZSGAAAIIIBARAQI+IgeCZiCAAAIIIOBSgIB3qUlZCCCAAAIIRESAgI/IgaAZCCCAAAIIuBQg4F1qUhYCCCCAAAIRESDgI3IgaAYCCCCAAAIuBQh4l5qUhQACCCCAQEQECPiIHAiagQACCCCAgEsBAt6lJmUhgAACCCAQEQECPiIHgmYggAACCCDgUoCAd6lJWQgggAACCEREgICPyIGgGQgggAACCLgUIOBdalIWAggggAACEREg4CNyIGgGAggggAACLgUIeJealIUAAggggEBEBAj4iBwImoEAAggggIBLAQLepSZlIYAAAgggEBEBAj4iB4JmIIAAAggg4FKAgHepSVkIIIAAAghERICAj8iBoBkIIIAAAgi4FCDgXWpSFgIIIIAAAhERIOAjciBoBgIIIIAAAi4FCHiXmpSFAAIIIIBARAQI+IgcCJqBAAIIIICASwEC3qUmZSGAAAIIIBARAQI+IgeCZiCAAAIIIOBSgIB3qUlZCCCAAAIIRESAgI/IgaAZCCCAAAIIuBQg4F1qUhYCCCCAAAIRESDgI3IgaAYCCCCAAAIuBQh4l5qUhQACCCCAQEQECPiIHAiagQACCCCAgEsBAt6lJmUhgAACCCAQEQECPiIHgmYggAACCCDgUoCAd6lJWQgggAACCEREgICPyIGgGQgggAACCLgUIOBdalIWAggggAACEREg4CNyIGgGAggggAACLgUIeJealIUAAggggEBEBAj4iBwImoEAAggggIBLAQLepSZlIYAAAgggEBEBAj4iB4JmIIAAAggg4FKAgHepSVkIIIAAAghERICAj8iBoBkIIIAAAgi4FCDgXWpSFgIIIIAAAhERIOAjciBoBgIIIIAAAi4F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" alt="plot of chunk unnamed-chunk-16"/></p>
+
+<p><strong>What happens if we consider only the left-hand side
+of the implications when computing the dissimilarity
+matrix?</strong></p>
+
+<pre><code class="r">Distances &lt;- impl_dist(imps, method = &quot;Manhattan&quot;)
+Dimps &lt;- Distances$left
+DD &lt;- as.matrix(Dimps)
+rownames(DD) &lt;- seq(imps$cardinality())
+kableExtra::kable(DD, align = &quot;c&quot;, row.names = TRUE)
+</code></pre>
+
+<table>
+ <thead>
+  <tr>
+   <th style="text-align:left;">   </th>
+   <th style="text-align:center;"> 1 </th>
+   <th style="text-align:center;"> 2 </th>
+   <th style="text-align:center;"> 3 </th>
+   <th style="text-align:center;"> 4 </th>
+   <th style="text-align:center;"> 5 </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 3 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+   <td style="text-align:center;"> 2 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 0 </td>
+  </tr>
+</tbody>
+</table>
+
+<p>We can use the PAM clustering algorithm to find 
+2 clusters:</p>
+
+<pre><code class="r">cluster &lt;- cluster_implications(Dimps, k = 2, &quot;pam&quot;)
+
+# The central implications in this case are:
+imps[cluster$representatives]
+</code></pre>
+
+<pre><code>## Implication set with 2 implications.
+## Rule 1: {large} -&gt; {far, moon}
+## Rule 2: {medium} -&gt; {far, moon}
+</code></pre>
+
+<p>The implications in the first cluster:</p>
+
+<pre><code class="r">imps[cluster$clustering == 1]
+</code></pre>
+
+<pre><code>## Implication set with 4 implications.
+## Rule 1: {no_moon} -&gt; {small, near}
+## Rule 2: {far} -&gt; {moon}
+## Rule 3: {near} -&gt; {small}
+## Rule 4: {large} -&gt; {far, moon}
+</code></pre>
+
+<p>and in the second one:</p>
+
+<pre><code class="r">imps[cluster$clustering == 2]
+</code></pre>
+
+<pre><code>## Implication set with 1 implications.
+## Rule 1: {medium} -&gt; {far, moon}
+</code></pre>
+
+<p>This clustering is almost random, due to the uninformative 
+dissimilarity matrix used.</p>
+
+</body>
+
+</html>
