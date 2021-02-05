@@ -30,5 +30,8 @@ install.packages(c("tidyverse", "cluster", "ggrepel", "MASS"))
 
 We have included two examples in this repository:
 
-- `planets_example.R` and `.html` present a simple example on how to perform implication clustering with a small dataset.
-- `replication_script.R` and the accompanying `.html` file are the code and results of clustering the implications valid in the MONKS datasets. It replicates the results presented in the paper mentioned above.
+- `planets_example.R`, and the accompanying `.md` and `.html` files, present a simple example on how to perform implication clustering with a small dataset.
+- `replication_script.R` and the accompanying `.md` and `.html` files are the code and results of clustering the implications valid in the MONKS datasets. It replicates the results presented in the paper mentioned above.
+
+If you want to check the results from this Github repository, you can inspect the `.md` files directly. Otherwise, you can clone or download the repository and check the `.html` files in your computer.
+
