@@ -297,7 +297,7 @@ all_results %>%
 #' Now, we can check which attributes are common in each cluster
 #' We consider an attribute as common if it's in more than
 #' an 80% of the implications of the cluster.
-threshold <- 0.8
+threshold <- 0.5
 
 #' Loop oveer the problems, performing clustering and determining
 #' common attributes
